@@ -5,6 +5,13 @@ export interface RegenChatBadgeProps {
   certificateUrl?: string
   /** Credits retired to display, e.g. "0.42 C" */
   creditsRetired?: string
+  /**
+   * Custom icon to replace the default leaf SVG. Use this to slot in the
+   * official Regen mark once design assets are available.
+   * @example
+   * icon={<img src="/regen-mark.svg" width={12} height={12} alt="" />}
+   */
+  icon?: React.ReactNode
   className?: string
   style?: React.CSSProperties
 }
@@ -29,6 +36,7 @@ const REGEN_GREEN = '#2D6A4F'
 export function RegenChatBadge({
   certificateUrl = 'https://compute.regen.network',
   creditsRetired,
+  icon,
   className,
   style,
 }: RegenChatBadgeProps) {
@@ -56,7 +64,7 @@ export function RegenChatBadge({
         ...style,
       }}
     >
-      <LeafIcon />
+      {icon ?? <LeafIcon />}
       Regenerative AI
       {creditsRetired && (
         <span style={{ opacity: 0.75, fontWeight: 400 }}>· {creditsRetired}</span>

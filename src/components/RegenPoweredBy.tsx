@@ -5,6 +5,13 @@ export interface RegenPoweredByProps {
   certificateUrl?: string
   /** Credits retired to display, e.g. "0.42 C" */
   creditsRetired?: string
+  /**
+   * Custom icon to replace the default leaf SVG. Use this to slot in the
+   * official Regen mark once design assets are available.
+   * @example
+   * icon={<img src="/regen-mark.svg" width={14} height={14} alt="" />}
+   */
+  icon?: React.ReactNode
   className?: string
   style?: React.CSSProperties
 }
@@ -35,6 +42,7 @@ const BORDER = '#B7E4C7'
 export function RegenPoweredBy({
   certificateUrl = 'https://compute.regen.network',
   creditsRetired,
+  icon,
   className,
   style,
 }: RegenPoweredByProps) {
@@ -60,7 +68,7 @@ export function RegenPoweredBy({
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, fontSize: '13px' }}>
-        <LeafIcon />
+        {icon ?? <LeafIcon />}
         Regenerative AI
       </div>
       <div style={{ fontSize: '11px', color: '#555', lineHeight: 1.4 }}>
