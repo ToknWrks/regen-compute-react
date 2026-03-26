@@ -1,0 +1,53 @@
+{
+  "name": "@toknwrks/regen-compute-react",
+  "version": "0.1.0",
+  "description": "React components for Regenerative Compute — ecological credit retirement UI for AI applications",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "regen-network",
+    "ecological-credits",
+    "regenerative-ai",
+    "react",
+    "nextjs",
+    "climate",
+    "components"
+  ],
+  "author": "ToknWrks",
+  "license": "Apache-2.0",
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {
+    "@toknwrks/regen-compute-client": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "typescript": "^5.4.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ToknWrks/regen-compute-react.git"
+  },
+  "homepage": "https://compute.regen.network/developers"
+}
