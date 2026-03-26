@@ -89,12 +89,12 @@ export function RetireButton({
         }}
         onMouseEnter={e => {
           if (!disabled && !isLoading && !isSuccess) {
-            (e.target as HTMLButtonElement).style.backgroundColor = REGEN_GREEN_HOVER
+            (e.currentTarget as HTMLButtonElement).style.backgroundColor = REGEN_GREEN_HOVER
           }
         }}
         onMouseLeave={e => {
           if (!isSuccess) {
-            (e.target as HTMLButtonElement).style.backgroundColor = isSuccess ? '#52B788' : REGEN_GREEN
+            (e.currentTarget as HTMLButtonElement).style.backgroundColor = REGEN_GREEN
           }
         }}
       >
@@ -143,13 +143,17 @@ function LeafIcon() {
   )
 }
 
+const spinnerStyle = `@keyframes regen-spin { to { transform: rotate(360deg) } }`
+
 function Spinner() {
   return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-      strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"
-      style={{ animation: 'spin 0.8s linear infinite' }}>
-      <style>{`@keyframes spin { to { transform: rotate(360deg) } }`}</style>
-      <path d="M21 12a9 9 0 1 1-6.219-8.56" />
-    </svg>
+    <>
+      <style>{spinnerStyle}</style>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+        strokeWidth="2.5" strokeLinecap="round" aria-hidden="true"
+        style={{ animation: 'regen-spin 0.8s linear infinite' }}>
+        <path d="M21 12a9 9 0 1 1-6.219-8.56" />
+      </svg>
+    </>
   )
 }

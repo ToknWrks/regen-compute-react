@@ -110,7 +110,7 @@ function shortHash(hash: string) {
 }
 
 function txUrl(hash: string) {
-  return `https://regen.aneka.io/txs/${hash}`
+  return `https://www.mintscan.io/regen/tx/${hash}`
 }
 
 function creditTypeName(batchDenom: string) {
