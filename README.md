@@ -10,6 +10,22 @@ Developers use these to signal to their users that their AI product is backed by
 npm install @toknwrks/regen-compute-react @toknwrks/regen-compute-client
 ```
 
+## Setup
+
+Get an API key at [compute.regen.network](https://compute.regen.network), then add it to your environment:
+
+**Local development** — add to `.env.local`:
+```
+REGEN_API_KEY=rfa_...
+```
+
+**Production** — add `REGEN_API_KEY` as an environment variable in your hosting platform:
+- **Vercel**: Project Settings → Environment Variables
+- **Netlify**: Site Settings → Environment Variables
+- **Railway / Render / Fly.io**: your project's environment/secrets settings
+
+> The API key is only ever read server-side. It is never exposed to the browser.
+
 ## Components
 
 ### `<RegenChatBadge />`
