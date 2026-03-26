@@ -1,5 +1,8 @@
-export { RegenBadge } from './components/RegenBadge.js'
-export type { RegenBadgeProps } from './components/RegenBadge.js'
+export { RegenChatBadge } from './components/RegenChatBadge.js'
+export type { RegenChatBadgeProps } from './components/RegenChatBadge.js'
+
+export { RegenPoweredBy } from './components/RegenPoweredBy.js'
+export type { RegenPoweredByProps } from './components/RegenPoweredBy.js'
 
 export { RetireButton } from './components/RetireButton.js'
 export type { RetireButtonProps } from './components/RetireButton.js'

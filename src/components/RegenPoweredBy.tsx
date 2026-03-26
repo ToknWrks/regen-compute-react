@@ -1,58 +1,43 @@
 import React from 'react'
 
-export interface RegenBadgeProps {
+export interface RegenPoweredByProps {
   /** Link to a specific retirement certificate, or defaults to compute.regen.network */
   certificateUrl?: string
   /** Credits retired to display, e.g. "0.42 C" */
   creditsRetired?: string
-  /** compact = small inline badge, full = card with more detail */
-  variant?: 'compact' | 'full'
   className?: string
   style?: React.CSSProperties
 }
 
 const REGEN_GREEN = '#2D6A4F'
 const REGEN_LIGHT = '#52B788'
+const REGEN_LIGHT_BG = '#F0FAF4'
+const BORDER = '#B7E4C7'
 
-export function RegenBadge({
+/**
+ * A "Powered by" card for app footers, sidebars, and about pages.
+ * Shows the Regen brand with a short description and a link to the
+ * certificate or compute.regen.network.
+ *
+ * @example
+ * // App footer:
+ * <footer>
+ *   <p>© 2025 Acme AI</p>
+ *   <RegenPoweredBy />
+ * </footer>
+ *
+ * // Sidebar:
+ * <aside>
+ *   <nav>...</nav>
+ *   <RegenPoweredBy certificateUrl={latestCertUrl} creditsRetired="1.2 C" />
+ * </aside>
+ */
+export function RegenPoweredBy({
   certificateUrl = 'https://compute.regen.network',
   creditsRetired,
-  variant = 'compact',
   className,
   style,
-}: RegenBadgeProps) {
-  if (variant === 'compact') {
-    return (
-      <a
-        href={certificateUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={className}
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '6px',
-          padding: '4px 10px',
-          borderRadius: '9999px',
-          backgroundColor: REGEN_GREEN,
-          color: '#fff',
-          fontSize: '11px',
-          fontWeight: 600,
-          fontFamily: 'system-ui, sans-serif',
-          textDecoration: 'none',
-          lineHeight: 1,
-          ...style,
-        }}
-      >
-        <LeafIcon />
-        Regenerative AI
-        {creditsRetired && (
-          <span style={{ opacity: 0.8, fontWeight: 400 }}>· {creditsRetired}</span>
-        )}
-      </a>
-    )
-  }
-
+}: RegenPoweredByProps) {
   return (
     <a
       href={certificateUrl}
@@ -65,8 +50,8 @@ export function RegenBadge({
         gap: '4px',
         padding: '12px 16px',
         borderRadius: '12px',
-        backgroundColor: '#F0FAF4',
-        border: `1px solid ${REGEN_LIGHT}`,
+        backgroundColor: REGEN_LIGHT_BG,
+        border: `1px solid ${BORDER}`,
         color: REGEN_GREEN,
         fontFamily: 'system-ui, sans-serif',
         textDecoration: 'none',
@@ -75,7 +60,7 @@ export function RegenBadge({
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, fontSize: '13px' }}>
-        <LeafIcon color={REGEN_GREEN} />
+        <LeafIcon />
         Regenerative AI
       </div>
       <div style={{ fontSize: '11px', color: '#555', lineHeight: 1.4 }}>
@@ -90,19 +75,10 @@ export function RegenBadge({
   )
 }
 
-function LeafIcon({ color = '#fff', size = 12 }: { color?: string; size?: number }) {
+function LeafIcon() {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke={color}
-      strokeWidth="2.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={REGEN_GREEN}
+      strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
       <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" />
     </svg>

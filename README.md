@@ -2,6 +2,8 @@
 
 React components for [Regenerative Compute](https://compute.regen.network) — drop-in UI for ecological credit retirement in AI applications.
 
+Developers use these to signal to their users that their AI product is backed by verified ecological regeneration on Regen Network.
+
 ## Install
 
 ```bash
@@ -10,24 +12,55 @@ npm install @toknwrks/regen-compute-react @toknwrks/regen-compute-client
 
 ## Components
 
-### `<RegenBadge />`
+### `<RegenChatBadge />`
 
-A small "Regenerative AI" badge that links to a retirement certificate or compute.regen.network.
+A small inline badge for chat footers and message input areas. The most common placement — always visible to the end user while they're using the AI.
 
 ```tsx
-import { RegenBadge } from '@toknwrks/regen-compute-react'
+import { RegenChatBadge } from '@toknwrks/regen-compute-react'
 
-// Compact inline badge
-<RegenBadge />
+// Minimal
+<RegenChatBadge />
 
 // With certificate link and credit display
-<RegenBadge
+<RegenChatBadge
   certificateUrl="https://compute.regen.network/certificate/WyJy..."
   creditsRetired="0.42 C"
 />
+```
 
-// Full card variant
-<RegenBadge variant="full" creditsRetired="0.42 C" />
+**Typical placement in a chat UI:**
+
+```tsx
+<div className="chat-input-wrapper">
+  <textarea placeholder="Message..." />
+  <div className="chat-input-footer">
+    <RegenChatBadge certificateUrl={latestCertUrl} />
+    <button type="submit">Send</button>
+  </div>
+</div>
+```
+
+---
+
+### `<RegenPoweredBy />`
+
+A "Powered by" card for app footers, sidebars, and about pages. Shows the Regen brand with a short description and a link to the retirement certificate.
+
+```tsx
+import { RegenPoweredBy } from '@toknwrks/regen-compute-react'
+
+// App footer
+<footer>
+  <p>© 2025 Acme AI</p>
+  <RegenPoweredBy />
+</footer>
+
+// Sidebar with live stats
+<RegenPoweredBy
+  certificateUrl={latestCertUrl}
+  creditsRetired="1.2 C"
+/>
 ```
 
 ---
@@ -56,23 +89,20 @@ import { retireCredits } from '../actions/retire'
 
 export function MyChat() {
   return (
-    <RetireButton
-      onRetire={retireCredits}
-      onSuccess={result => console.log(result)}
-    >
+    <RetireButton onRetire={retireCredits}>
       Offset This Session
     </RetireButton>
   )
 }
 ```
 
-After retirement, the button automatically shows a certificate link (on-chain) or a marketplace link (credit card fallback).
+After retirement, the button automatically shows a certificate link (on-chain) or marketplace link (credit card fallback).
 
 ---
 
 ### `<RegenCertificate />`
 
-Displays a retirement certificate with on-chain details.
+Displays a full retirement certificate with on-chain details.
 
 ```tsx
 import { RegenCertificate } from '@toknwrks/regen-compute-react'
@@ -108,7 +138,7 @@ const impact = await regen.impact()
 All components use inline styles with zero CSS dependencies. Override with `className` or `style`:
 
 ```tsx
-<RegenBadge className="my-badge" style={{ borderRadius: '4px' }} />
+<RegenChatBadge className="my-badge" style={{ fontSize: '12px' }} />
 ```
 
 ## License
